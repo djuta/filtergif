@@ -1,4 +1,4 @@
 flask-boilerplate
 ============================
 
-A boilerplate for a Python Flask application using the Foundation front end framework
+A boilerplate for a Python web application using Flask and Foundation
