@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for image in image_list %}
+	<img class="no-select" src={{image}} />
+{% endfor %}
+
+<input type="button" value="submit" onclick="makeGif()">
+</form>
+{% endblock %}
