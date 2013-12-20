@@ -1,4 +1,8 @@
-flask-boilerplate
+filtergif
 ============================
 
-A boilerplate for a Python web application using Flask and Foundation
+An application that renders Gif images based off of selected Instagram images
+
+TODO:
+- Allow users to pick images
+- Generate gifs based off of selection
