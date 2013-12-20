@@ -1,10 +1,18 @@
 $('.no-select').click(function()
 {
-	$(this).toggleClass('selected');
-})
+	$(this).clone().removeClass('no-select').addClass('selected').appendTo('#timeline');
+});
+
+$(document).on('click', 'img.selected', function()
+{
+	$(this).remove();
+});
+
 
 function makeGif()
 {
-	test = ['a','b','c'];
-	window.location.href="test?a="+test;
+	s = new Array();
+	$('.selected').each(function(i) {
+		s[i] = $(this).attr('src');	
+	})
 }
