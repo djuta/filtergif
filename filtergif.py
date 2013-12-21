@@ -2,9 +2,11 @@ from flask import Flask, render_template, request
 from instagram import client, subscriptions
 from images2gif import writeGif
 from PIL import Image
-import urllib, cStringIO
+import urllib
 import uuid
-
+import cStringIO
+from array import array
+import io
 app = Flask(__name__)
 
 CONFIG = {
@@ -16,6 +18,7 @@ unauthenticated_api = client.InstagramAPI(**CONFIG)
 
 photos = None
 file_names = None
+
 @app.route('/')
 def index_html():
 	url = unauthenticated_api.get_authorize_url()	 	
@@ -36,23 +39,28 @@ def on_callback():
 		photos = []		
 		for media in recent_media:
 			photos.append(media.images['thumbnail'].url)
-		file_names = []
-		for p in photos:
-			file_names.append(cStringIO.StringIO(urllib.urlopen(p).read()))
-			
-		images = [Image.open(fn) for fn in file_names]
-		size = (150,150)
-		filename = "gifs/%s.gif" % str(uuid.uuid4())
-		writeGif(filename,images,duration=0.5)
 		return render_template('pickpics.html',image_list=photos)
 	except Exception, e:
 		print e
-@app.route('/test')
-def test():
-	url = unauthenticated_api.get_authorize_url()	 	
-	return render_template('index.html',authorize_url=url)
 
+@app.route('/make_gif', methods=['GET','POST'])
+def make_gif():
+	time = float(request.form.get('time'))
+	pics = request.form.getlist('pics[]')
+	file_names = []
+	for p in pics:
+		file_names.append(cStringIO.StringIO(urllib.urlopen(p).read()))
 
+	images = [Image.open(fn) for fn in file_names]
+	size = (150,150)
+	filename = "static/gifs/%s.gif" % str(uuid.uuid4())
+	writeGif(filename,images,duration=time)
+	return filename
+
+@app.route('/gif')
+def gif():
+	gif = request.args.get('gif')
+	return render_template('gif.html',image=gif)
 
 if __name__ == '__main__':
     app.run(debug=True)
