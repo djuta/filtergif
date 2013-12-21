@@ -1,5 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a class="medium button" href="{{authorize_url}}">Sign In With Instagram</a>
+<h1>Welcome to Filtergif</h1>
+<h4>Filtergif allows you to generate GIF images using photo's you've taken using Instagram. I had a way better name, but it would totally violate Instagram's API 
+policy. Sorry.</h4>
+
+<div class="row extramargin">
+<img src="/static/img/instagram.png" alt="">
+</div>
+<div class="row extramargin">
+<a class="medium success button" href="{{authorize_url}}">Sign In With Instagram</a>
+</div>
 {% endblock %}

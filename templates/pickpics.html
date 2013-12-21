@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% for image in image_list %}
-	<img class="no-select" src={{image}} />
-{% endfor %}
-<div id="timeline"></div>
-<input type="text" id="time">
-<input type="button" value="submit" onclick="makeGif()">
-</form>
+	<h2>Pick Yo' Pics</h2>
+	<p class="medium-8 medium-offset-2">Click on one of your images to add it to the timeline. If you want to remove an image from your timeline, just click on it in the timeline.	Enter the amount of time you want between pictures and then click submit to render you GIF!!!</p>
+	<div id="pics">
+		{% for image in image_list %}
+			<img class="no-select" src={{image}} />
+		{% endfor %}
+	</div>
+
+	<h3>Timeline</h3>
+	<div id="timeline" class="row extramargin" style="text-align:left;">
+	</div>
+	<label for="time">Time between frames:</label>
+	<input type="text" name="time" id="time" >
+
+	<a class="medium success button" onclick="makeGif()">Make GIF</a>
 {% endblock %}
