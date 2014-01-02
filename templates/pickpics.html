@@ -8,12 +8,27 @@
 			<img class="no-select" src={{image}} />
 		{% endfor %}
 	</div>
-
+	<br />
 	<h3>Timeline</h3>
-	<div id="timeline" class="row extramargin" style="text-align:left;">
+	<div id="timeline" class="panel" style="text-align:left;">
 	</div>
-	<label for="time">Time between frames:</label>
-	<input type="text" name="time" id="time" >
+	<br />
+	<div class="row">
+		<div class="medium-4 medium-offset-4 columns">
+      			<label for="time">Time Between Frames</label>
+      			<input id="time" name="time" type="text" />
+    		</div>
+	</div>
 
 	<a class="medium success button" onclick="makeGif()">Make GIF</a>
+	<div class="row">
+	<div class="medium-2 medium-offset-5 columns  id="circleG">
+		<div id="circleG_1" class="circleG">
+		</div>
+		<div id="circleG_2" class="circleG">
+		</div>
+		<div id="circleG_3" class="circleG">
+		</div>
+	</div> 
+	</div>
 {% endblock %}
