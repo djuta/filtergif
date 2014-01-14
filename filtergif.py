@@ -1,30 +1,31 @@
+import urllib
+import cStringIO
+from array import array
+import io
 from flask import Flask, render_template, request
 from instagram import client, subscriptions
 from images2gif import writeGif
 from PIL import Image
-import urllib
-import uuid
-import cStringIO
-from array import array
-import io
+import shortuuid
+from settings import CONFIG
+
 app = Flask(__name__)
 
-CONFIG = {
-	'client_id':'6b8b8320cc194b50ad1bff2a8026d167',
-	'client_secret':'2c226bb025254c838ea9f2b4bb13c6e5',
-	'redirect_uri':'http://127.0.0.1:5000/oauth_callback'
-}
 unauthenticated_api = client.InstagramAPI(**CONFIG)
 
 photos = None
 file_names = None
 
+
+# Index Page
 @app.route('/')
 def index_html():
 	url = unauthenticated_api.get_authorize_url()	 	
 
 	return render_template('index.html',authorize_url=url)
 
+
+# Pick images page
 @app.route('/oauth_callback')
 def on_callback():
 	code = request.args.get('code')
@@ -43,6 +44,8 @@ def on_callback():
 	except Exception, e:
 		print e
 
+
+# Make GIF method
 @app.route('/make_gif', methods=['GET','POST'])
 def make_gif():
 	time = float(request.form.get('time'))
@@ -53,14 +56,16 @@ def make_gif():
 
 	images = [Image.open(fn) for fn in file_names]
 	size = (150,150)
-	filename = "static/gifs/%s.gif" % str(uuid.uuid4())
+	random_name = str(shortuuid.uuid()) 
+	filename = "static/gifs/%s.gif" % random_name
 	writeGif(filename,images,duration=time)
-	return filename
+	return random_name
 
-@app.route('/gif')
-def gif():
-	gif = request.args.get('gif')
-	return render_template('gif.html',image=gif)
+
+# GIF display page
+@app.route('/gif/<gif>')
+def gif(gif):
+	return render_template('gif.html',image=('static/gifs/%s.gif' % gif))
 
 if __name__ == '__main__':
     app.run(debug=True)

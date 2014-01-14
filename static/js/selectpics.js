@@ -22,6 +22,6 @@ function makeGif()
 	$.post('/make_gif',{'time' : $('#time').val(), 'pics[]' : s})
 	.done(function(file_name)
 	{
-		window.location.href= "/gif?gif="+file_name;	
+		window.location.href= "/gif/"+file_name;	
 	});
 }

@@ -7,5 +7,3 @@ TODO:
 - Add validation
 - STYLE!!!
 - Add social media share buttons
-- Create cleaner url routing
-- Change file name generation (UUID is too long)
