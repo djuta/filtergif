@@ -2,7 +2,7 @@ import urllib
 import cStringIO
 from array import array
 import io
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort, redirect, url_for
 from instagram import client, subscriptions
 from images2gif import writeGif
 from PIL import Image
@@ -48,8 +48,14 @@ def on_callback():
 # Make GIF method
 @app.route('/make_gif', methods=['GET','POST'])
 def make_gif():
-	time = float(request.form.get('time'))
+	time = request.form.get('time')
+	if time == "":
+		#TODO: Error Message
+		abort(404)
 	pics = request.form.getlist('pics[]')
+	if not pics:
+		#TODO: Error Message
+		abort(404)
 	file_names = []
 	for p in pics:
 		file_names.append(cStringIO.StringIO(urllib.urlopen(p).read()))
@@ -58,7 +64,7 @@ def make_gif():
 	size = (150,150)
 	random_name = str(shortuuid.uuid()) 
 	filename = "static/gifs/%s.gif" % random_name
-	writeGif(filename,images,duration=time)
+	writeGif(filename,images,duration=float(time))
 	return random_name
 
 

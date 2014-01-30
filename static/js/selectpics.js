@@ -13,12 +13,22 @@ $(document).on('click', 'img.selected', function()
 
 function makeGif()
 {
-	$(".circleG").show();
 	s = new Array();
 	$('.selected').each(function(i) {
 		s[i] = $(this).attr('src');	
 	});
-        
+	if (s.length < 1)
+	{
+		alert ("Select some pics bro");
+		return false;
+	}
+
+	if ($('#time').val() == "")
+	{
+		alert ("enter in some frame times man");
+		return false;
+	}
+	$(".circleG").show();
 	$.post('/make_gif',{'time' : $('#time').val(), 'pics[]' : s})
 	.done(function(file_name)
 	{
