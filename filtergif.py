@@ -54,8 +54,7 @@ def on_callback():
 @app.route('/make_gif', methods=['GET', 'POST'])
 def make_gif():
     """
-    Ajax function that creates gif image based on
-    selected Instagram Images
+    creates gif image based on selected Instagram Images
     """
     time = request.form.get('time')
     if time == "":
