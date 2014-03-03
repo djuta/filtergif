@@ -5,7 +5,7 @@
 	<p class="medium-8 medium-offset-2">Click on one of your images to add it to the timeline. If you want to remove an image from your timeline, just click on it in the timeline.	Enter the amount of time you want between pictures and then click submit to render you GIF!!!</p>
 	<div id="pics">
 		{% for image in image_list %}
-			<img class="no-select" src={{image}} />
+			<img class="no-select" width="150px" src={{image}} />
 		{% endfor %}
 	</div>
 	<br />
@@ -22,7 +22,7 @@
 
 	<a class="medium success button" onclick="makeGif()">Make GIF</a>
 	<div class="row">
-	<div class="medium-2 medium-offset-5 columns  id="circleG">
+	<div class="medium-2 medium-offset-5 columns"  id="circleG">
 		<div id="circleG_1" class="circleG">
 		</div>
 		<div id="circleG_2" class="circleG">

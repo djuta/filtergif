@@ -17,12 +17,13 @@
     <li class="name">
       <h1><a href="#">Filtergif</a></h1>
     </li>
+	<li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
 
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li><a href="">About</a></li>
+      <li><a href="" data-reveal-id="aboutModal">About</a></li>
       <li><a href="#">Developer</a></li>
       <li><a href="">Github</a></li>
     </ul>
@@ -31,6 +32,26 @@
 <div class="row extramargin" style="text-align:center;">
 {% block content %}
 {% endblock %}
+</div>
+<div id="aboutModal" class="reveal-modal" data-reveal>
+  <h2>About FilterGif</h2>
+  <p class="lead">FilterGif lets you make animated GIF slideshows using your
+  Instagram photos and some imagination</p>
+  <p>I could say that FilterGif allows you to create animated images that employ
+  Soviet montage theory in which short shots are edited into a sequence to 
+  condense space, time, and information. Instead I'll say that FilterGif is 
+  a fun little project I created  that lets you make cool image sequences which 
+  you can share with your friends. Or you can keep them to yourself, I'm not 
+  going to tell you what to do.
+  </p>
+  <p>Created Using:</p>
+  <ul>
+  	<li>Python</li>
+  	<li>Flask</li>
+  	<li>Foundation</li>
+  	<li>Instagram's API</li>
+  </ul>
+  <a class="close-reveal-modal">&#215;</a>
 </div>
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js/foundation.min.js"></script>

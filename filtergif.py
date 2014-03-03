@@ -1,9 +1,7 @@
 import urllib
 import cStringIO
-from array import array
-import io
-from flask import Flask, render_template, request, abort, redirect, url_for
-from instagram import client, subscriptions
+from flask import Flask, render_template, request, abort
+from instagram import client
 from images2gif import writeGif
 from PIL import Image
 import shortuuid
@@ -45,7 +43,7 @@ def on_callback():
         recent_media, next = api.user_recent_media()
         photos = []
         for media in recent_media:
-            photos.append(media.images['thumbnail'].url)
+            photos.append(media.images['low_resolution'].url)
         return render_template('pickpics.html', image_list=photos)
     except Exception, e:
         print e
@@ -69,7 +67,6 @@ def make_gif():
         file_names.append(cStringIO.StringIO(urllib.urlopen(p).read()))
 
     images = [Image.open(fn) for fn in file_names]
-    size = (150, 150)
     random_name = str(shortuuid.uuid())
     filename = "static/gifs/%s.gif" % random_name
     writeGif(filename, images, duration=float(time))
@@ -85,4 +82,3 @@ def gif(gif):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
