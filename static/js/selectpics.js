@@ -1,5 +1,3 @@
-$(".circleG").hide();
-
 $('.no-select').click(function()
 {
 	$(this).clone().removeClass('no-select').addClass('selected').appendTo('#timeline');
@@ -28,7 +26,7 @@ function makeGif()
 		alert ("enter in some frame times man");
 		return false;
 	}
-	$(".circleG").show();
+	$('#loadModal').foundation('reveal', 'open');
 	$.post('/make_gif',{'time' : $('#time').val(), 'pics[]' : s})
 	.done(function(file_name)
 	{

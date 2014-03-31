@@ -15,20 +15,17 @@
 	<br />
 	<div class="row">
 		<div class="medium-4 medium-offset-4 columns">
-      			<label for="time">Time Between Frames</label>
+      			<h6>Time Between Frames (in seconds)</h6>
+				<label for="time">Hint: If you want the time between frames to be under a second just input 0.x (where x is a number)</label>
       			<input id="time" name="time" type="text" />
     		</div>
 	</div>
 
 	<a class="medium success button" onclick="makeGif()">Make GIF</a>
-	<div class="row">
-	<div class="medium-2 medium-offset-5 columns"  id="circleG">
-		<div id="circleG_1" class="circleG">
-		</div>
-		<div id="circleG_2" class="circleG">
-		</div>
-		<div id="circleG_3" class="circleG">
-		</div>
-	</div> 
+	<div id="loadModal" class="reveal-modal" data-reveal>
+  		<h2>Creating Gif...</h2>
+    	<p class="lead">Your animated sequence is currently being created</p>
+	  	<p>If you chose a lot of images, it's probably going to take a bit of time. So sit back and relax, maybe watch some Youtube clips of car chases or something.</p>
+	    <a class="close-reveal-modal">&#215;</a>
 	</div>
 {% endblock %}
