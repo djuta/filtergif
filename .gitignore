@@ -42,7 +42,7 @@ local.properties
 *.sln.docstates
 *.sln
 *.pyproj
-
+index.py
 # Build results
 
 [Dd]ebug/
