@@ -81,9 +81,9 @@ def make_gif():
 
     # generate a random filename
     random_name = str(shortuuid.uuid())
-    filename = "static/gifs/%s.gif" % random_name
+    filename = "/home/djuta/webapps/static/gifs/%s.gif" % random_name
 
-    # generate gif sequence
+    #generate gif sequence
     writeGif(filename, images, duration=time)
     return random_name
 
