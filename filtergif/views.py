@@ -6,7 +6,7 @@ from images2gif import writeGif
 from PIL import Image
 import shortuuid
 from flask import render_template, request, abort
-from settings import CONFIG
+from settings import CONFIG, GIF_PATH
 from filtergif import app
 
 # initialize api
@@ -81,7 +81,7 @@ def make_gif():
 
     # generate a random filename
     random_name = str(shortuuid.uuid())
-    filename = "/home/djuta/webapps/static/gifs/%s.gif" % random_name
+    filename = GIF_PATH + "%s.gif" % random_name
 
     #generate gif sequence
     writeGif(filename, images, duration=time)
