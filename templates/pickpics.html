@@ -1,31 +1,40 @@
 {% extends 'base.html' %}
 
-{% block content %}
-	<h2>Pick Yo' Pics</h2>
-	<p class="medium-8 medium-offset-2">Click on one of your images to add it to the timeline. If you want to remove an image from your timeline, just click on it in the timeline.	Enter the amount of time you want between pictures and then click submit to render you GIF!!!</p>
-	<div id="pics">
-		{% for image in image_list %}
-			<img class="no-select" width="150px" src={{image}} />
-		{% endfor %}
-	</div>
-	<br />
-	<h3>Timeline</h3>
-	<div id="timeline" class="panel" style="text-align:left;">
-	</div>
-	<br />
-	<div class="row">
-		<div class="medium-4 medium-offset-4 columns">
-      			<h6>Time Between Frames (in seconds)</h6>
-				<label for="time">Hint: If you want the time between frames to be under a second just input 0.x (where x is a number)</label>
-      			<input id="time" name="time" type="text" />
-    		</div>
-	</div>
+{% block head %}
+<link href="/static/css/content.css" rel="stylesheet">
+{% endblock %}
 
-	<a class="medium success button" onclick="makeGif()">Make GIF</a>
-	<div id="loadModal" class="reveal-modal" data-reveal>
-  		<h2>Creating Gif...</h2>
-    	<p class="lead">Your animated sequence is currently being created</p>
-	  	<p>If you chose a lot of images, it's probably going to take a bit of time. So sit back and relax, maybe watch some Youtube clips of car chases or something.</p>
-	    <a class="close-reveal-modal">&#215;</a>
-	</div>
+{% block content %}
+<h2 class="cover-heading text-center">Pick Your Images</h2>
+<p class="text-center">Click on one of your images to add it to the timeline. 
+If you want to remove an image from your timeline, just click on it in the timeline. 
+Enter the amount of time you want between pictures and then click submit to render you GIF!</p>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Your Instagram Photos</div>
+    <div id="pics" class="panel-body">
+    {% for image in image_list %}
+        <img class="no-select" width="150px" src={{image}} />
+    {% endfor %}
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Timeline</div>
+    <div id="timeline" class="panel-body" style="text-align:left;"></div>
+</div>
+
+<div class="text-center">
+        <label for="time">Time Between Frames in Seconds (eg. 0.3)</label><br />
+        <input id="time" name="time" type="text" /><br /><br />
+        <a href="#" class="btn btn-lg btn-default" onclick="makeGif()">Make Gif</a>
+</div>
+
+{% include 'about.html' %}    
+{% include 'loading.html' %}        
+
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/selectpics.js"></script>
 {% endblock %}

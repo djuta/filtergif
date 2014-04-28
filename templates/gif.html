@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h2>Here's Yo' GIF</h2>
+<div id="fb-root"></div>
+<script src="/static/js/facebook.js"></script>
+<h2 class="text-center">Here's Your GIF</h2>
 <br />
-<a href="/{{ image }}">
-<img src="/{{ image }}" alt="">
-<br /><br />
-<div class="fb-share-button" data-href="" data-type="button"></div>
-</a>
+<div class="text-center">
+    <a href="/{{ image }}">
+    <img src="/{{ image }}" alt="">
+    </a><br /><br />
+    <div class="fb-share-button" data-href="" data-type="button"></div>
+</div>
 {% endblock %}

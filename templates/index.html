@@ -1,14 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'cover_base.html' %}
 
 {% block content %}
-<h1>Welcome to Filtergif</h1>
-<h4>Filtergif allows you to generate GIF images using photo's you've taken using Instagram. I had a way better name, but it would totally violate Instagram's API 
-policy. Sorry.</h4>
-
-<div class="row extramargin">
-<img src="/static/img/instagram.png" alt="">
-</div>
-<div class="row extramargin">
-<a class="medium success button" href="{{authorize_url}}">Sign In With Instagram</a>
-</div>
+<h1 class="cover-heading">FilterGif</h1>
+<p class="lead">FilterGif is an application that allows 
+you to create animated GIF sequences using your Instagram photos.</p>
+<p class="lead">
+    <a href="{{authorize_url}}" class="btn btn-lg btn-default">Get Started</a>
+</p>
 {% endblock %}
